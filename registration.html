@@ -1,0 +1,104 @@
+<!-- registration.html -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlowFit — Реєстрація</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.bg {
+      background: linear-gradient(135deg, #ffe4fa, #e1d5ff);
+      font-family: 'Segoe UI', sans-serif;
+      color: #4b006e;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #ffffffdd;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 128, 255, 0.4);
+      animation: glowFade 1.5s ease-in-out;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(128, 0, 128, 0.15);
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(155, 0, 200, 0.5);
+    }
+
+    button {
+      background-color: #d76ee2;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.2s ease, background-color 0.3s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c155d1;
+      transform: scale(1.03);
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glowFade {
+      from { box-shadow: 0 0 0 rgba(255, 128, 255, 0.4); }
+      to { box-shadow: 0 0 30px rgba(255, 128, 255, 0.4); }
+    }
+  </style>
+</head>
+<body class="bg">
+  <div class="container fade-in">
+    <h1>💖 GlowFit</h1>
+    <h2>Реєстрація</h2>
+    <form id="registrationForm">
+      <input type="text" id="name" placeholder="Ваше ім’я 💁‍♀️" required>
+      <input type="number" id="age" placeholder="Вік 🎂" required>
+      <select id="gender">
+        <option value="Чоловік">👨 Чоловік</option>
+        <option value="Жінка">👩 Жінка</option>
+      </select>
+      <input type="number" id="height" placeholder="Зріст (см) 📏" required>
+      <input type="number" id="weight" placeholder="Вага (кг) ⚖️" required>
+      <select id="activity">
+        <option value="Малоактивний">🪑 Малоактивний</option>
+        <option value="Помірний" selected>🚶 Помірний</option>
+        <option value="Активний">🏃 Активний</option>
+      </select>
+      <select id="goal">
+        <option value="Схуднення">🔥 Схуднення</option>
+        <option value="Підтримка">⚖️ Підтримка ваги</option>
+        <option value="Набір ваги">🍗 Набір ваги</option>
+      </select>
+      <button type="submit">✨ Почати ✨</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
