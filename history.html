@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlowFit — Історія</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg" style="overflow-y: auto; min-height: 100vh;">
+  <div class="container fade-in">
+    <button onclick="location.href='tracker.html'">🔙 Назад до трекера</button>
+    <h1>📖 Історія прогресу</h1>
+    <ul id="historyList"></ul>
+  </div>
+  <script>
+    const historyList = document.getElementById('historyList');
+    const allHistory = JSON.parse(localStorage.getItem('history') || '{}');
+    const sorted = Object.keys(allHistory).sort((a, b) => b.localeCompare(a));
+
+    if (sorted.length === 0) {
+      historyList.innerHTML = '<p>Поки що немає збереженої історії 🕰️</p>';
+    } else {
+      sorted.forEach(date => {
+        const day = allHistory[date];
+        const item = document.createElement('li');
+        item.innerHTML = `
+          <strong>📅 ${date}</strong><br>
+          💧 Вода: ${day.water} мл<br>
+          🔥 Калорії: ${day.calories} ккал<br>
+          🚶‍♀️ Кроки: ${day.steps}
+          <hr>`;
+        historyList.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>

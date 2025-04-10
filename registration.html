@@ -6,7 +6,7 @@
   <title>GlowFit — Реєстрація</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg" style="overflow-y: auto; min-height: 100vh;">
+<body class="bg">
   <div class="container fade-in">
     <h1>💖 GlowFit</h1>
     <h2>Реєстрація</h2>
@@ -29,9 +29,9 @@
         <option value="Підтримка">⚖️ Підтримка ваги</option>
         <option value="Набір ваги">🍗 Набір ваги</option>
       </select>
-      <div id="lossOptions" style="display:none;">
-        <label><input type="checkbox" id="safeLoss" onchange="toggleLossType()"> Просто схуднення</label>
-        <div id="lossTypeBlock">
+      <div id="lossOptions" style="display:block; margin-top: 20px; padding-top: 10px; border-top: 1px solid #ccc;">
+        <div style="margin-bottom: 10px;"><label><input type="checkbox" id="safeLoss" onchange="toggleLossType()"> Просто схуднення <span style="font-size: 13px;">(безпечне)</span></label></div>
+        <div id="lossTypeBlock" style="margin-top: 10px;"><label for="lossType">Темп схуднення:</label><br>
           <select id="lossType">
             <option value="0.5">0.5 кг/тиждень</option>
             <option value="1">1 кг/тиждень</option>
@@ -49,5 +49,22 @@
     </form>
   </div>
   <script src="script.js"></script>
+<script>
+function toggleLossOptions() {
+  const goal = document.getElementById('goal').value;
+  const block = document.getElementById('lossOptions');
+  if (block) block.style.display = goal === 'Схуднення' ? 'block' : 'none';
+}
+function toggleLossType() {
+  const safe = document.getElementById('safeLoss')?.checked;
+  const typeBlock = document.getElementById('lossTypeBlock');
+  if (typeBlock) typeBlock.style.display = safe ? 'none' : 'block';
+}
+function toggleCustomFields() {
+  const enabled = document.getElementById('customValuesToggle')?.checked;
+  const customBlock = document.getElementById('customFields');
+  if (customBlock) customBlock.style.display = enabled ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
