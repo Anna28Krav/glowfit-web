@@ -1,4 +1,3 @@
-<!-- registration.html -->
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -6,79 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GlowFit — Реєстрація</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body.bg {
-      background: linear-gradient(135deg, #ffe4fa, #e1d5ff);
-      font-family: 'Segoe UI', sans-serif;
-      color: #4b006e;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 30px;
-      background: #ffffffdd;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255, 128, 255, 0.4);
-      animation: glowFade 1.5s ease-in-out;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 12px 15px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      box-shadow: 0 2px 8px rgba(128, 0, 128, 0.15);
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      box-shadow: 0 0 10px rgba(155, 0, 200, 0.5);
-    }
-
-    button {
-      background-color: #d76ee2;
-      color: white;
-      font-weight: bold;
-      transition: transform 0.2s ease, background-color 0.3s;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #c155d1;
-      transform: scale(1.03);
-    }
-
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .fade-in {
-      animation: fadeIn 1s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes glowFade {
-      from { box-shadow: 0 0 0 rgba(255, 128, 255, 0.4); }
-      to { box-shadow: 0 0 30px rgba(255, 128, 255, 0.4); }
-    }
-  </style>
 </head>
 <body class="bg">
   <div class="container fade-in">
     <h1>💖 GlowFit</h1>
     <h2>Реєстрація</h2>
     <form id="registrationForm">
-      <!-- Базові поля вже є -->
       <input type="text" id="name" placeholder="Ваше ім’я 💁‍♀️" required>
       <input type="number" id="age" placeholder="Вік 🎂" required>
       <select id="gender">
@@ -97,9 +29,8 @@
         <option value="Підтримка">⚖️ Підтримка ваги</option>
         <option value="Набір ваги">🍗 Набір ваги</option>
       </select>
-
-      <div id="lossOptions" style="display: none;">
-        <label><input type="checkbox" id="safeLoss" onchange="toggleLossType()"> Просто схуднення (безпечне)</label>
+      <div id="lossOptions" style="display:none;">
+        <label><input type="checkbox" id="safeLoss" onchange="toggleLossType()"> Просто схуднення</label>
         <div id="lossTypeBlock">
           <select id="lossType">
             <option value="0.5">0.5 кг/тиждень</option>
@@ -108,183 +39,15 @@
           </select>
         </div>
       </div>
-      <hr>
       <label><input type="checkbox" id="customValuesToggle" onchange="toggleCustomFields()"> Ввести власні значення</label>
-      <div id="customFields" style="display: none;">
+      <div id="customFields" style="display:none;">
         <input type="number" id="customCalories" placeholder="Калорій на день 🔥">
         <input type="number" id="customWater" placeholder="Склянок води 💧">
         <input type="number" id="customSteps" placeholder="Кроків на день 🚶‍♂️">
       </div>
-
       <button type="submit">✨ Почати ✨</button>
     </form>
   </div>
   <script src="script.js"></script>
 </body>
-</html>
-
-<!-- tracker.html -->
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlowFit — Трекер</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg">
-  <div class="container fade-in">
-    <button onclick="location.href='registration.html'">🔙 Назад</button>
-    <h1>🌟 Ваш трекер GlowFit</h1>
-
-    <div id="welcome"></div>
-
-    <div class="progress-card">
-      <h2>💧 Вода</h2>
-      <progress id="waterProgress" value="0" max="2000"></progress>
-      <p id="waterText">0 / 2000 мл</p>
-      <button onclick="addValue('water')">+ Додати воду</button>
-    </div>
-
-    <div class="progress-card">
-      <h2>🔥 Калорії</h2>
-      <progress id="caloriesProgress" value="0" max="2000"></progress>
-      <p id="caloriesText">0 / 2000 ккал</p>
-      <button onclick="addValue('calories')">+ Додати калорії</button>
-    </div>
-
-    <div class="progress-card">
-      <h2>🚶‍♀️ Кроки</h2>
-      <progress id="stepsProgress" value="0" max="10000"></progress>
-      <p id="stepsText">0 / 10000</p>
-      <button onclick="addValue('steps')">+ Додати кроки</button>
-    </div>
-
-    <div id="macros"></div>
-
-    <button onclick="location.href='history.html'">📖 Історія</button>
-  </div>
-  <script src="script.js"></script>
-</body>
-<script>
-// script.js (вбудовано)
-
-// Завантаження даних користувача
-window.addEventListener('load', () => {
-  const page = location.pathname;
-  if (page.includes('registration')) {
-    document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
-  } else if (page.includes('tracker')) {
-    loadTracker();
-  }
-});
-
-function handleRegistration(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const age = parseInt(document.getElementById('age').value);
-  const gender = document.getElementById('gender').value;
-  const height = parseInt(document.getElementById('height').value);
-  const weight = parseInt(document.getElementById('weight').value);
-  const activity = document.getElementById('activity').value;
-  const goal = document.getElementById('goal').value;
-
-  const customEnabled = document.getElementById('customValuesToggle').checked;
-  const safeLoss = document.getElementById('safeLoss')?.checked || false;
-  const lossType = parseFloat(document.getElementById('lossType')?.value || 0);
-
-  let calories = 2000;
-  if (customEnabled) {
-    calories = parseInt(document.getElementById('customCalories').value) || 2000;
-  } else {
-    const bmr = gender === 'Жінка'
-      ? 10 * weight + 6.25 * height - 5 * age - 161
-      : 10 * weight + 6.25 * height - 5 * age + 5;
-    calories = bmr * 1.4;
-
-    if (goal === 'Схуднення') {
-      if (safeLoss) {
-        calories -= 250;
-      } else {
-        calories -= lossType * 1000;
-      }
-    } else if (goal === 'Набір ваги') {
-      calories += 300;
-    }
-  }
-  calories = Math.max(1000, Math.min(4000, Math.round(calories)));
-
-  let water = 2000;
-  if (customEnabled) {
-    const glasses = parseInt(document.getElementById('customWater').value) || 8;
-    water = glasses * 250;
-  } else {
-    water = Math.round((weight * 30) / 250) * 250;
-  }
-
-  let steps = 10000;
-  if (customEnabled) {
-    steps = parseInt(document.getElementById('customSteps').value) || 10000;
-  } else {
-    if (activity === 'Малоактивний') steps = 8000;
-    if (activity === 'Активний') steps = 12000;
-    if (goal === 'Схуднення') steps += 2000;
-    if (goal === 'Набір ваги') steps -= 1000;
-    if (age > 50) steps -= 1000;
-    if (age < 25) steps += 500;
-  }
-
-  localStorage.setItem('glowfit', JSON.stringify({ name, calories, water, steps }));
-  localStorage.setItem('progress', JSON.stringify({ water: 0, calories: 0, steps: 0 }));
-  location.href = 'tracker.html';
-}
-
-function loadTracker() {
-  savePreviousDay();
-  const data = JSON.parse(localStorage.getItem('glowfit') || '{}');
-  const progress = JSON.parse(localStorage.getItem('progress') || '{}');
-  if (!data.name) location.href = 'registration.html';
-
-  document.getElementById('welcome').innerHTML = `👋 Привіт, <b>${data.name}</b>!`;
-
-  setTracker('water', data.water, progress.water);
-  setTracker('calories', data.calories, progress.calories);
-  setTracker('steps', data.steps, progress.steps);
-
-  const proteins = Math.round((data.calories * 0.3) / 4);
-  const fats = Math.round((data.calories * 0.25) / 9);
-  const carbs = Math.round((data.calories * 0.45) / 4);
-  document.getElementById('macros').innerText = `Б: ${proteins} г | Ж: ${fats} г | В: ${carbs} г`;
-}
-
-function setTracker(type, max, current = 0) {
-  document.getElementById(`${type}Progress`).max = max;
-  document.getElementById(`${type}Progress`).value = current;
-  document.getElementById(`${type}Text`).innerText = `${current} / ${max} ${type === 'steps' ? '' : type === 'calories' ? 'ккал' : 'мл'}`;
-}
-
-function savePreviousDay() {
-  const today = new Date().toISOString().split('T')[0];
-  const lastSaved = localStorage.getItem('lastSavedDate');
-  if (lastSaved !== today) {
-    const history = JSON.parse(localStorage.getItem('history') || '{}');
-    const prevProgress = JSON.parse(localStorage.getItem('progress') || '{}');
-    if (lastSaved) {
-      history[lastSaved] = prevProgress;
-      localStorage.setItem('history', JSON.stringify(history));
-    }
-    localStorage.setItem('lastSavedDate', today);
-    localStorage.setItem('progress', JSON.stringify({ water: 0, calories: 0, steps: 0 }));
-  }
-}
-
-function addValue(type) {
-  const value = prompt(`Скільки ${type === 'water' ? 'мл води' : type === 'calories' ? 'ккал' : 'кроків'} додати?`);
-  if (!value || isNaN(value)) return;
-  const progress = JSON.parse(localStorage.getItem('progress') || '{}');
-  progress[type] = (progress[type] || 0) + parseInt(value);
-  localStorage.setItem('progress', JSON.stringify(progress));
-  loadTracker();
-}
-</script>
 </html>
